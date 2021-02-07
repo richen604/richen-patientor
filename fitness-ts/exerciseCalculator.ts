@@ -99,6 +99,6 @@ const calculateExercise = (exercises: Exercises, target: number): Output => {
     return result
 }
 
-const {exercises, target} = parseArguments(process.argv)
+/* const {exercises, target} = parseArguments(process.argv)
 
-console.log(calculateExercise(exercises, target));
+console.log(calculateExercise(exercises, target)); */

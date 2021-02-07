@@ -5,33 +5,38 @@ type Result = string
 interface Args {
     height: number
     weight: number
+    error?: string
 }
 
-const parseArgs = (args: Array<string>) : Args => {
+export const parseArgs = (args: Array<string>) : Args => {
 
     
-    if (args.length < 4 ) throw new Error('Not enough arguments')
-    if (args.length > 4 ) throw new Error('Too many arguments')
+    if (args.length < 2 ) throw new Error('Not enough arguments')
+    if (args.length > 2 ) throw new Error('Too many arguments')
 
-    const argsSplice = args.splice(2)
-
-    if(argsSplice.some(arg => isNaN(Number(arg)))){
-        throw new Error('Args should be numbers')
+    if(args.some(arg => isNaN(Number(arg)))){
+        const result = {
+            height: 0,
+            weight: 0,
+            error: "malformatted parameters"
+        }
+        return result
     }
 
-    const height: number =  Number(argsSplice[0]) as number
-    const weight: number =  Number(argsSplice[1]) as number
+    const height: number =  Number(args[0]) as number
+    const weight: number =  Number(args[1]) as number
 
     const result = {
         height,
-        weight
+        weight,
     }
 
     return result
 }
 
 
-const calculateBmi = (centimeters: Height, kilograms: Weight) : Result => {
+
+export const calculateBmi = (centimeters: Height, kilograms: Weight) : Result => {
     const meters = centimeters / 100
     const result = ( kilograms /(meters * meters)) 
     if(result > 24.9){
@@ -42,5 +47,5 @@ const calculateBmi = (centimeters: Height, kilograms: Weight) : Result => {
     return 'Normal (healthy weight)'
 }
 
-const {height, weight} = parseArgs(process.argv)
-console.log(calculateBmi(height, weight))
+/* const {height, weight} = parseArgs(process.argv)
+console.log(calculateBmi(height, weight)) */
