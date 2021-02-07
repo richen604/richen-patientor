@@ -1,5 +1,5 @@
 import express from 'express';
-import {calculateBmi, parseArgs} from './bmiCalculator'
+import {calculateBmi, parseArgs} from './bmiCalculator';
 const app = express();
 
 app.get('/hello', (_req, res) => {
@@ -8,14 +8,14 @@ app.get('/hello', (_req, res) => {
 
 app.get('/bmi', (req, res) => {
 
-    const {height, weight, error} = parseArgs([String(req.query.height), String(req.query.weight)])
+    const {height, weight, error} = parseArgs([String(req.query.height), String(req.query.weight)]);
 
     if(error){
-        res.json({error})
-        return
+        res.json({error});
+        return;
     } 
     
-    const bmi = calculateBmi(height, weight)
+    const bmi = calculateBmi(height, weight);
     
     res.json({weight, height, bmi});
 

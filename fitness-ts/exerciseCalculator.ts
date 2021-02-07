@@ -14,24 +14,24 @@ interface Results {
     target: number
 }
 
-const parseArguments = (args: Array<string>): Results => {
-    if (args.length < 4 ) throw new Error('Not enough arguments')
+export const parseArguments = (args: Array<string>): Results => {
+    if (args.length < 4 ) throw new Error('Not enough arguments');
 
-    const argsSplice = args.splice(2)
+    const argsSplice = args.splice(2);
 
     if(argsSplice.some(arg => isNaN(Number(arg)))){
-        throw new Error('Args should be numbers')
+        throw new Error('Args should be numbers');
     }
 
     const result = {
         exercises: argsSplice.map(arg => Number(arg)).splice(1),
         target: argsSplice.map(arg => Number(arg))[0]
-    }
+    };
 
-    return result
-}
+    return result;
+};
 
-const calculateExercise = (exercises: Exercises, target: number): Output => {
+export const calculateExercise = (exercises: Exercises, target: number): Output => {
   const periodLength: number = exercises.length;
   const getDaysTrained = (): number => {
     return exercises.filter((e) => e !== 0 ).length;
@@ -54,37 +54,37 @@ const calculateExercise = (exercises: Exercises, target: number): Output => {
   }
 
   const ratingCalc = (success: boolean, average: number, target: number): Rating => {
-    let rating: number = 0
-    let ratingDescription: string = ''
+    let rating = 0;
+    let ratingDescription = '';
 
     if(!success && (average < (target / 2))) {
-        rating = 1
+        rating = 1;
     } else if (!success) {
-        rating = 2
+        rating = 2;
     } else if(success) {
-        rating = 3
+        rating = 3;
     }
 
     if(rating === 1){
-        ratingDescription = "Not doing good, keep chipping at it"
+        ratingDescription = "Not doing good, keep chipping at it";
     } else if (rating === 2) {
-        ratingDescription = "Not bad, but could do better"
+        ratingDescription = "Not bad, but could do better";
     } else if (rating === 3){
-        ratingDescription = "Good job! Keep up the good work!"
+        ratingDescription = "Good job! Keep up the good work!";
     }
 
     const ratingResult: Rating = {
         rating,
         ratingDescription
-    }
-
-    return ratingResult
     };
 
-    const daysTrained = getDaysTrained()
-    const average = getAverage()
-    const success = getSuccess(average)
-    const {rating, ratingDescription} = ratingCalc(success, average, target)
+    return ratingResult;
+    };
+
+    const daysTrained = getDaysTrained();
+    const average = getAverage();
+    const success = getSuccess(average);
+    const {rating, ratingDescription} = ratingCalc(success, average, target);
     
     const result ={
         periodLength,
@@ -94,10 +94,10 @@ const calculateExercise = (exercises: Exercises, target: number): Output => {
         ratingDescription,
         target,
         average
-    }
+    };
 
-    return result
-}
+    return result;
+};
 
 /* const {exercises, target} = parseArguments(process.argv)
 
