@@ -9,12 +9,12 @@ interface Output {
   average?: number;
 }
 
-interface Args {
-    exercises?: number[];
-    target?: number
+interface Results {
+    exercises: number[];
+    target: number
 }
 
-const parseArguments = (args: Array<string>): Args => {
+const parseArguments = (args: Array<string>): Results => {
     if (args.length < 4 ) throw new Error('Not enough arguments')
 
     const argsSplice = args.splice(2)
@@ -49,13 +49,14 @@ const calculateExercise = (exercises: Exercises, target: number): Output => {
   };
 
   interface Rating {
-      rating?: number;
-      ratingDescription?: string,
+      rating: number;
+      ratingDescription: string,
   }
 
   const ratingCalc = (success: boolean, average: number, target: number): Rating => {
-    let rating: number
-    let ratingDescription: string
+    let rating: number = 0
+    let ratingDescription: string = ''
+
     if(!success && (average < (target / 2))) {
         rating = 1
     } else if (!success) {
@@ -72,7 +73,12 @@ const calculateExercise = (exercises: Exercises, target: number): Output => {
         ratingDescription = "Good job! Keep up the good work!"
     }
 
-    return {rating, ratingDescription}
+    const ratingResult: Rating = {
+        rating,
+        ratingDescription
+    }
+
+    return ratingResult
     };
 
     const daysTrained = getDaysTrained()

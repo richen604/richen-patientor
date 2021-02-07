@@ -3,11 +3,13 @@ type Weight = number
 type Result = string
 
 interface Args {
-    height?: number
-    weight?: number
+    height: number
+    weight: number
 }
 
 const parseArgs = (args: Array<string>) : Args => {
+
+    
     if (args.length < 4 ) throw new Error('Not enough arguments')
     if (args.length > 4 ) throw new Error('Too many arguments')
 
@@ -17,9 +19,12 @@ const parseArgs = (args: Array<string>) : Args => {
         throw new Error('Args should be numbers')
     }
 
+    const height: number =  Number(argsSplice[0]) as number
+    const weight: number =  Number(argsSplice[1]) as number
+
     const result = {
-        height: argsSplice.map(arg => Number(arg))[0],
-        weight: argsSplice.map(arg => Number(arg))[1]
+        height,
+        weight
     }
 
     return result
@@ -37,6 +42,5 @@ const calculateBmi = (centimeters: Height, kilograms: Weight) : Result => {
     return 'Normal (healthy weight)'
 }
 
-
-const {height, weight} = parseArgs(process.argv) 
+const {height, weight} = parseArgs(process.argv)
 console.log(calculateBmi(height, weight))
