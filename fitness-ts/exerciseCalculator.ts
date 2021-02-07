@@ -11,21 +11,35 @@ interface Output {
 
 interface Results {
     exercises: number[];
-    target: number
+    target: number,
+    error?: string,
 }
 
-export const parseArguments = (args: Array<string>): Results => {
-    if (args.length < 4 ) throw new Error('Not enough arguments');
+export const parseArguments = (daily_exercises: Array<string>, target: number): Results => {
 
-    const argsSplice = args.splice(2);
+    if (daily_exercises.length < 2 || !target) {
+        const result = {
+            exercises: [],
+            target: 0,
+            error: "malformatted parameters",
+        };
+        return result;
+    }
+    const allArgs = daily_exercises.concat(String(target));
 
-    if(argsSplice.some(arg => isNaN(Number(arg)))){
-        throw new Error('Args should be numbers');
+    if(allArgs.some(arg => isNaN(Number(arg)))){
+        const result = {
+            exercises: [],
+            target: 0,
+            error: "malformatted parameters",
+        };
+
+        return result;
     }
 
     const result = {
-        exercises: argsSplice.map(arg => Number(arg)).splice(1),
-        target: argsSplice.map(arg => Number(arg))[0]
+        exercises: daily_exercises.map(arg => Number(arg)),
+        target
     };
 
     return result;
