@@ -1,24 +1,14 @@
 import React from "react";
 
-export interface CoursePart {
-  name: string;
-  exerciseCount: number;
-}
+import { CoursePart } from "../App";
+import Part from "./Part";
 
-const Content: React.FunctionComponent<{ courseParts: Array<CoursePart> }> = ({
-  courseParts,
-}) => {
+const Content: React.FC<{ courseParts: CoursePart[] }> = ({ courseParts }) => {
   return (
     <>
-      <p>
-        {courseParts[0].name} {courseParts[0].exerciseCount}
-      </p>
-      <p>
-        {courseParts[1].name} {courseParts[1].exerciseCount}
-      </p>
-      <p>
-        {courseParts[2].name} {courseParts[2].exerciseCount}
-      </p>
+      {courseParts.map((part) => (
+        <Part key={part.name} part={part} />
+      ))}
     </>
   );
 };
