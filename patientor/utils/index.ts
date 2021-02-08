@@ -13,6 +13,17 @@ const parseString = (arg: any): string => {
   return arg;
 };
 
+const isDate = (date: string): boolean => {
+  return Boolean(Date.parse(date));
+};
+
+const parseDate = (date: any): string => {
+  if (!date || !isString(date) || !isDate(date)) {
+      throw new Error(`Incorrect or missing date: ${date}`);
+  }
+  return date;
+};
+
 const isGender = (param: any): param is Gender => {
   return Object.values(Gender).includes(param);
 };
@@ -27,7 +38,7 @@ const parseGender = (gender: any): Gender => {
 const toNewPatientEntry = (object: any): NewPatientEntry => {
   return {
     name: parseString(object.name),
-    dateOfBirth: parseString(object.dateOfBirth),
+    dateOfBirth: parseDate(object.dateOfBirth),
     ssn: parseString(object.ssn),
     gender: parseGender(object.gender),
     occupation: parseString(object.occupation)
