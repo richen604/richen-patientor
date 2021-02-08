@@ -19,7 +19,7 @@ const isDate = (date: string): boolean => {
 
 const parseDate = (date: any): string => {
   if (!date || !isString(date) || !isDate(date)) {
-      throw new Error(`Incorrect or missing date: ${date}`);
+    throw new Error(`Incorrect or missing date: ${date}`);
   }
   return date;
 };
@@ -35,15 +35,43 @@ const parseGender = (gender: any): Gender => {
   return gender;
 };
 
+/* const isEntry = (param: any): param is Entry[] => {
+  return Object.values(Entry).includes(param);
+};
+
+const parseEntryType = (entryType: any): EntryType => {
+  if (!Object.values(EntryType).includes(entryType)) {
+    throw new Error(`Incorrect or missing type: ${entryType || ""}`);
+  }
+
+  return entryType;
+};
+
+const toNewBaseEntry = (object: any): NewBaseEntry => {
+  const newBaseEntry: NewBaseEntry = {
+    type: parseEntryType(object.type),
+    description: parseString(object.description),
+    date: parseDate(object.date),
+    specialist: parseString(object.specialist),
+  };
+
+  if (object.diagnosisCodes) {
+    newBaseEntry.diagnosisCodes = parseDiagnosesCodes(object.diagnosisCodes);
+  }
+
+  return newBaseEntry;
+}; */
+
 const toNewPatientEntry = (object: any): NewPatientEntry => {
   return {
     name: parseString(object.name),
     dateOfBirth: parseDate(object.dateOfBirth),
     ssn: parseString(object.ssn),
     gender: parseGender(object.gender),
-    occupation: parseString(object.occupation)
+    occupation: parseString(object.occupation),
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    entries: object.entries,
   };
 };
-
 
 export default toNewPatientEntry;
