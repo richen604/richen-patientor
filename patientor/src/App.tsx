@@ -11,11 +11,12 @@ import { useStateValue } from "./state";
 import { Patient } from "./types";
 
 import PatientListPage from "./PatientListPage";
+import PatientPage from "./PatientPage/PatientPage";
 
 const App: React.FC = () => {
   const [, dispatch] = useStateValue();
   React.useEffect(() => {
-    axios.get<void>(`${apiBaseUrl}/ping`).catch(error => console.log(error));
+    axios.get<void>(`${apiBaseUrl}/ping`).catch((error) => console.log(error));
 
     const fetchPatientList = async () => {
       try {
@@ -27,7 +28,7 @@ const App: React.FC = () => {
         console.error(e);
       }
     };
-    fetchPatientList().catch(error=> console.log(error));
+    fetchPatientList().catch((error) => console.log(error));
   }, [dispatch]);
 
   return (
@@ -40,7 +41,10 @@ const App: React.FC = () => {
           </Button>
           <Divider hidden />
           <Switch>
-            <Route path="/" render={() => <PatientListPage />} />
+            <Route exact path="/" render={() => <PatientListPage />} />
+            <Route path="/patients/:id">
+              <PatientPage />
+            </Route>
           </Switch>
         </Container>
       </Router>
