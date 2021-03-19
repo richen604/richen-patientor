@@ -37,13 +37,13 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "rm -rf ./build && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "tsc": "rm -rf ./build && tsc",
+    "tsc": "rm -rf ./dist && tsc",
     "dev": "nodemon",
     "lint": "eslint --ext .ts,.tsx . --fix",
-    "start:ts": "node build/index.js"
+    "start:ts": "node dist/index.js"
   },
   "browserslist": {
     "production": [
