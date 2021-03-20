@@ -1,1 +1,1 @@
-web: npm run start:ts
+web: NODE_ENV=production node ./dist/index.js
