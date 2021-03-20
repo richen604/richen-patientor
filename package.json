@@ -36,7 +36,7 @@
     "ts-node": "^9.1.1"
   },
   "scripts": {
-    "start": "npm install && npm run build && npm run tsc && npm run start:ts",
+    "start": "ls -a",
     "dev-client": "NODE_ENV=development build=true node tsconfigReset.js && react-scripts start && build=false node tsconfigReset.js",
     "dev-server": "NODE_ENV=development build=false node tsconfigReset.js && nodemon",
     "build": "rm -rf ./build && NODE_ENV=production build=true node tsconfigReset.js && NODE_ENV=production react-scripts build && build=false node tsconfigReset.js",
