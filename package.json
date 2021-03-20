@@ -43,7 +43,7 @@
     "eject": "react-scripts eject",
     "tsc": "build=false node tsconfigReset.js && rm -rf ./dist && NODE_ENV=production tsc",
     "lint": "eslint --ext .ts,.tsx . --fix",
-    "start:ts": "NODE_ENV=production node dist/index.js"
+    "start:ts": "NODE_ENV=production node ./dist/index.js"
   },
   "browserslist": {
     "production": [
