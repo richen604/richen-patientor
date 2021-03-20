@@ -10,6 +10,7 @@ if (process.env.build === "true") {
 
   data.compilerOptions.noEmit = true;
   data.compilerOptions.module = "esnext";
+  data.compilerOptions.isolatedModules = true;
 
   try {
     fs.writeFileSync("./tsconfig.json", JSON.stringify(data, null, 4));
@@ -26,6 +27,7 @@ if (process.env.build === "true") {
 
   data.compilerOptions.noEmit = false;
   data.compilerOptions.module = "commonjs";
+  data.compilerOptions.isolatedModules = false;
 
   try {
     fs.writeFileSync("./tsconfig.json", JSON.stringify(data, null, 4));
