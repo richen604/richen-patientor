@@ -37,10 +37,6 @@ jobs:
             ${{secrets.HEROKU_API_KEY}}
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           heroku_app_name: richen-patientor
-          healthcheck: "https://richen-patientor.herokuapp.com/api/ping"
-          checkstring: "pong"
-          delay: 10
-          rollbackonhealthcheckfailed: true
         if: ( github.event_name == 'push' ) && success()
       - uses: "actions/checkout@v2"
       - name: Bump version and push tag
