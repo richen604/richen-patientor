@@ -1,1 +1,1 @@
-worker: npm run start:ts
+web: npm run start:ts
