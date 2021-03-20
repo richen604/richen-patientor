@@ -41,7 +41,7 @@
     "build": "rm -rf ./build && NODE_ENV=production build=true node tsconfigReset.js && NODE_ENV=production react-scripts build && build=false node tsconfigReset.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "tsc": "NODE_ENV=production build=false node tsconfigReset.js && rm -rf ./dist && tsc",
+    "tsc": "build=false node tsconfigReset.js && rm -rf ./dist && NODE_ENV=production tsc",
     "lint": "eslint --ext .ts,.tsx . --fix",
     "start:ts": "NODE_ENV=production node dist/index.js"
   },
