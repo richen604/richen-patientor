@@ -36,12 +36,12 @@
     "ts-node": "^9.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "rm -rf ./build && react-scripts build",
+    "dev-client": "build=true node tsconfigReset.js && react-scripts start && build=false node tsconfigReset.js",
+    "dev-server": "build=false node tsconfigReset.js && nodemon",
+    "build": "rm -rf ./build && build=true node tsconfigReset.js && react-scripts build && build=false node tsconfigReset.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "tsc": "rm -rf ./dist && tsc",
-    "dev": "nodemon",
+    "tsc": "build=false node tsconfigReset.js && rm -rf ./dist && tsc",
     "lint": "eslint --ext .ts,.tsx . --fix",
     "start:ts": "node dist/index.js"
   },

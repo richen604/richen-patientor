@@ -1,6 +1,7 @@
-import React from 'react';
-import { Modal, Segment } from 'semantic-ui-react';
-import AddPatientForm, { PatientFormValues } from './AddPatientForm';
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import React from "react";
+import { Modal, Segment } from "semantic-ui-react";
+import AddPatientForm, { PatientFormValues } from "./AddPatientForm";
 
 interface Props {
   modalOpen: boolean;
