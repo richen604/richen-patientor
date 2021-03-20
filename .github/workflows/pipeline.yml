@@ -26,6 +26,8 @@ jobs:
         run: npm run build
       - name: lint
         run: npm run lint
+      - name: run ls
+        run: ls
       - name: Deploy to Heroku
         uses: AkhileshNS/heroku-deploy@v3.11.10
         with:
