@@ -37,7 +37,6 @@ jobs:
             ${{secrets.HEROKU_API_KEY}}
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           heroku_app_name: richen-patientor
-          dontuseforce: 1
           healthcheck: "https://richen-patientor.herokuapp.com/api/ping"
           checkstring: "pong"
           delay: 10
